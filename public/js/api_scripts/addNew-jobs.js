@@ -231,6 +231,7 @@ $("#search-job-by-name").click(function(){
 				var job_array = res
 				for(i=0;i<job_array.length;i++){
 					element = job_array[i]
+					element['endDate'] = moment.utc(parseInt(job_array[i]['endDate'])*1000).format("DD-MM-YYYY HH:mm A");
 					element['completeddate'] = moment.utc(parseInt(job_array[i]['endDate'])*1000).format("DD-MM-YYYY HH:mm A");
 					$("#job-list").append(template(element));
 				}

@@ -21,6 +21,8 @@
 	<link rel="stylesheet" type="text/css" href="css/jobs.css">
 	<link rel="stylesheet" type="text/css" href="css/signin.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+	  <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+  <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
 	<style type="text/css">
 		#map {
 			height: 100%;
@@ -41,7 +43,25 @@
 			margin-right: 20px !important;
 			margin-top: 4px;
 		}
+
+		#buttons1{
+			left: 268px;
+			top: 225px;
+			position: absolute;
+			z-index: 9999;
+			background-color: rgba(0, 0, 0, 0.68);
+			padding: 10px 20px;
+			color: #fff;
+			font-family: 'LatoRegular';
+			font-size: 14px;
+		}
+		#buttons1 label{
+			margin-right: 20px !important;
+			margin-top: 4px;
+		}
+
 	</style>
+
 </head>
 <body>
 	<div class="overflow-scroll">
@@ -148,7 +168,7 @@
 	<script type="text/javascript" src="http://c3173.r73.cf2.rackcdn.com/Kumulos.min.js"></script>
 	<script src="js/vendor/underscore.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7lEhWOW6t8D5yWL0FwnL_Wa7QgyVNe7o&callback=init&sensor=false"></script>
+
 	<!-- <script src='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js'></script> -->
 	<!-- <link href='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet' /> -->
 	<script src="js/api_scripts/map_view.js"></script>
@@ -164,5 +184,34 @@
 			Digital
 		</label>
 	</div>
+	<div id="buttons1">
+	<label for='shower'>
+			<input type="radio" name="map-type" id="" class='chk-btn' value="basic" checked="checked">
+			Basic
+		</label>
+		<label for='shower'>
+			<input type="radio" name="map-type" id="" class='chk-btn' value="streets" checked="checked">
+			Streets
+		</label>
+		<label for='flush'>
+			<input type="radio" name="map-type" id="" class='chk-btn' value="bright">
+			Bright
+		</label>
+		<label for='flush'>
+			<input type="radio" name="map-type" id="" class='chk-btn' value="light">
+			Light
+		</label>
+		<label for='flush'>
+			<input type="radio" name="map-type" id="" class='chk-btn' value="dark">
+			Light
+		</label>
+		<label for='flush'>
+			<input type="radio" name="map-type" id="" class='chk-btn' value="satellite">
+			Satellite
+		</label>
+		
+	</div>
+	<script>
+</script>
 </body>
 </html>
