@@ -1,3 +1,8 @@
+var current_markers = []
+L.mapbox.accessToken = 'pk.eyJ1IjoiYWZ6YWwiLCJhIjoiY2oyMGx2dzE0MDA1cTJ3cW1kOGVwcG1wdSJ9.dCq8m2ZL0ZOLH1qynjnUwg';
+var map = L.mapbox.map('map-area', 'mapbox.streets').setView([-24.994167,134.866944], 4);
+// map.invalidateSize();
+
 $(document).on("click",".pagination-element",function(){
 	$(".pagination-element").removeClass("active")
 	var numberofrec=9 ;
@@ -122,40 +127,71 @@ $(function(){
 });
 
 $(document).on("click",".view-map",function(){
-	var latitude = $(this).attr("data-latitude");
-	var longitude = $(this).attr("data-longitude");
-	$("#map-area").locationpicker({
-		location: {
-			latitude: latitude,
-			longitude:longitude
-		},
-		locationName: "",
-		radius: 500,
-		zoom: 13,
-		mapTypeId: google.maps.MapTypeId.ROADMAP,
-		styles: [],
-		mapOptions: {},
-		scrollwheel: true,
-		inputBinding: {
-			latitudeInput: null,
-			longitudeInput: null,
-			radiusInput: null,
-			locationNameInput: null
-		},
-		enableAutocomplete: false,
-		enableAutocompleteBlur: false,
-		autocompleteOptions: null,
-		addressFormat: 'postal_code',
-		enableReverseGeocode: true,
-		draggable: false,
-		onchanged: function(currentLocation, radius, isMarkerDropped) {
-		},
-		onlocationnotfound: function(locationName) {},
-		oninitialized: function (component) {},
-		markerIcon: undefined,
-		markerDraggable: false,
-		markerVisible : true
-	})
+	var job_element = $(this).closest("tr");
+	var auditor_name = job_element.find(".userName").text()
+	var jobid = job_element.find(".jobId").text()
+	var siteId = job_element.find(".siteId").text()
+	var completeness = job_element.find(".progress-bar").attr("aria-valuenow")
+	var location = job_element.find(".location").text()
+	var job_latitude = $(this).attr("data-latitude");
+	var job_longitude = $(this).attr("data-longitude");
+	var auditor_latitude = $(this).attr("data-auditorlatitude");
+	var auditor_longitude = $(this).attr("data-auditorlongitude");
+	var jobtype =job_element.attr("data-type")
+	for(i=0;i<current_markers.length;i++){
+		map.removeLayer(current_markers[i]);
+	}
+	var popup_html = "<span>JOB ID:"+jobid+"</span></br><span>SITE ID:"+siteId+"</span></br><span>Completeness:"+completeness+"%</span></br><span>JOB TYPE:"+jobtype+"</span></br><span>Location:"+location+"</span></br>";
+    // var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
+
+    var job_marker = L.marker([job_latitude, job_longitude]).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
+    	this.openPopup();
+    }).on('mouseout', function (e) {
+    	this.closePopup();
+    })
+    current_markers.push(job_marker)
+    var auditor_text = "<span>AUDITOR NAME:"+auditor_name+"</span></br>"
+    var auditormarker = L.marker([auditor_latitude, auditor_longitude]).addTo(map).bindPopup(auditor_text).on('mouseover', function (e) {
+    	this.openPopup();
+    }).on('mouseout', function (e) {
+    	this.closePopup();
+    })
+    current_markers.push(auditormarker)
+	// $("#map-area").locationpicker({
+	// 	location: {
+	// 		latitude: latitude,
+	// 		longitude:longitude
+	// 	},
+	// 	locationName: "",
+	// 	radius: 500,
+	// 	zoom: 13,
+	// 	mapTypeId: google.maps.MapTypeId.ROADMAP,
+	// 	styles: [],
+	// 	mapOptions: {},
+	// 	scrollwheel: true,
+	// 	inputBinding: {
+	// 		latitudeInput: null,
+	// 		longitudeInput: null,
+	// 		radiusInput: null,
+	// 		locationNameInput: null
+	// 	},
+	// 	enableAutocomplete: false,
+	// 	enableAutocompleteBlur: false,
+	// 	autocompleteOptions: null,
+	// 	addressFormat: 'postal_code',
+	// 	enableReverseGeocode: true,
+	// 	draggable: false,
+	// 	onchanged: function(currentLocation, radius, isMarkerDropped) {
+	// 	},
+	// 	onlocationnotfound: function(locationName) {},
+	// 	oninitialized: function (component) {},
+	// 	markerIcon: undefined,
+	// 	markerDraggable: false,
+	// 	markerVisible : true
+	// })
 	$("#map-modal").modal('show');
+	setTimeout(function(){
+		map.invalidateSize();
+	},1000)
 
 })

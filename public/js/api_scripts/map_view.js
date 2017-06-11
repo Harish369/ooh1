@@ -7,8 +7,9 @@ $(function(){
  var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
  kumulos_init.call('mapviewfilter',{jwt_token:localStorage['ooh-jwt-token'],type:maptype},function(res){
   for(i=0;i<res.length;i++){
-    console.log(res)
-    var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(res[i].location).on('mouseover', function (e) {
+    
+    var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
+    var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
       this.openPopup();
     }).on('mouseout', function (e) {
       this.closePopup();
@@ -30,7 +31,9 @@ $(document).on("click","#show-static",function(){
   kumulos_init.call('mapviewfilter',{jwt_token:localStorage['ooh-jwt-token'],type:maptype},function(res){
     for(i=0;i<res.length;i++){
       console.log(res)
-       var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(res[i].location).on('mouseover', function (e) {
+    var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
+    
+       var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
       this.openPopup();
       }).on('mouseout', function (e) {
         this.closePopup();
@@ -49,7 +52,8 @@ $(document).on("click","#show-digital",function(){
   var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
   kumulos_init.call('mapviewfilter',{jwt_token:localStorage['ooh-jwt-token'],type:maptype},function(res){
     for(i=0;i<res.length;i++){
-      var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(res[i].location).on('mouseover', function (e) {
+    var popup_html = "<span>JOB ID:"+res[i].jobid+"</span></br><span>SITE ID:"+res[i].siteId+"</span></br><span>INSPECTION ID:"+res[i].inspectionid+"</span></br><span>JOB TYPE:"+res[i].jobtype+"</span></br><span>Location:"+res[i].location+"</span></br><span>STATUS:"+res[i].status+"</span>";
+      var marker = L.marker([res[i].latitude, res[i].longitude]).addTo(map).bindPopup(popup_html).on('mouseover', function (e) {
       this.openPopup();
       }).on('mouseout', function (e) {
         this.closePopup();
