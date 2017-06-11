@@ -1,7 +1,6 @@
 var current_markers = []
 L.mapbox.accessToken = 'pk.eyJ1IjoiYWZ6YWwiLCJhIjoiY2oyMGx2dzE0MDA1cTJ3cW1kOGVwcG1wdSJ9.dCq8m2ZL0ZOLH1qynjnUwg';
 var map = L.mapbox.map('map-area', 'mapbox.streets').setView([-24.994167,134.866944], 4);
-// map.invalidateSize();
 
 $(document).on("click",".pagination-element",function(){
 	$(".pagination-element").removeClass("active")

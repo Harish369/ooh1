@@ -1,7 +1,6 @@
 var current_markers = []
 L.mapbox.accessToken = 'pk.eyJ1IjoiYWZ6YWwiLCJhIjoiY2oyMGx2dzE0MDA1cTJ3cW1kOGVwcG1wdSJ9.dCq8m2ZL0ZOLH1qynjnUwg';
 var map = L.mapbox.map('map', 'mapbox.streets').setView([-24.994167,134.866944], 5);
-// L.marker([37.775408, -122.413682]).addTo(map).bindPopup('<strong>Science Hall</strong><br>Where the GISC was born.')
 $(function(){ 
  var  maptype ="Static";
  var kumulos_init= Kumulos.initWithAPIKeyAndSecretKey('05a0cda2-401b-4a58-9336-69cc54452eba', 'EKGTFyZG5/RQe7QuRridgjc0K8TIaKX3wLxC');
